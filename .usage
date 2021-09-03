@@ -8,3 +8,5 @@ pr
     -h | --help    echo the usage
     -r | --remove  remove project path cache
     -u | --update  update pr
+    -o | --open    open vscode for choosed project
+

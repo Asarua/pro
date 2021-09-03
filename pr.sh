@@ -4,22 +4,34 @@ set -e
 
 pr_path="$HOME/.pr_path"
 is_start="false"
+open="false"
+only_option="false"
+
+toggle() {
+  only_option="true"
+}
 
 if ! [ -z ${#@} ]; then
   while [ ${#@} -gt 0 ];
   do
     case $1 in
       -h|--help)
-        cat .usage
-        exit
+        cat .usage && toggle
+        shift
         ;;
       -r|--remove)
         rm -i $pr_path && echo "$pr_path删除成功！"
-        exit
+        toggle
+        shift
         ;;
       -u|--update)
         npm i @asarua/pr -g
-        exit
+        toggle
+        shift
+        ;;
+      -o|--open)
+        open="true"
+        shift
         ;;
       *)
         echo "参数错误！使用方式如下"
@@ -29,6 +41,8 @@ if ! [ -z ${#@} ]; then
     esac
   done
 fi
+
+[[ $only_option =~ "true" ]] && exit 0
 
 echo_pkg() {
   local pkg_path="$path/$1/package.json"
@@ -82,6 +96,7 @@ do
     else
       echo "请输入要选择启动的命令："
       select c in `echo_pkg $i`; do
+        [[ $open =~ "true" ]] && code .
         npm run $c
       done
     fi
