@@ -11,12 +11,28 @@ toggle() {
   only_option="true"
 }
 
+usage() {
+  cat <<EOF
+pr
+  a command line tool, for start project quickly
+
+[Usage]
+  $ pr [-hruo]
+
+  [options]
+    -h | --help    echo the usage
+    -r | --remove  remove project path cache
+    -u | --update  update pr
+    -o | --open    open vscode for choosed project
+EOF
+}
+
 if ! [ -z ${#@} ]; then
   while [ ${#@} -gt 0 ];
   do
     case $1 in
       -h|--help)
-        cat .usage && toggle
+        usage && toggle
         shift
         ;;
       -r|--remove)
@@ -35,7 +51,7 @@ if ! [ -z ${#@} ]; then
         ;;
       *)
         echo "参数错误！使用方式如下"
-        cat .usage
+        usage
         exit 1
         ;;
     esac
