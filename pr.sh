@@ -2,7 +2,7 @@
 
 set -e
 
-pr_path=".pr_path"
+pr_path="$HOME/.pr_path"
 is_start="false"
 
 if ! [ -z ${#@} ]; then
@@ -74,8 +74,8 @@ cd $path
 echo "请选择项目："
 select i in `ls`;
 do
-  echo $i
   if [[ $i != "" ]] && [ -d "$path/$i" ] ; then
+    echo "当前选中项目为：$i"
     cd "$path/$i"
     if ! [ -f package.json ]; then
       echo "未发现package.json文件，请重新选择目录！"
