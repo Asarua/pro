@@ -1,0 +1,10 @@
+pr
+  a command line tool, for start project quickly
+
+[Usage]
+  $ pr [-hru]
+
+  [options]
+    -h | --help    echo the usage
+    -r | --remove  remove project path cache
+    -u | --update  update pr

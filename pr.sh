@@ -5,6 +5,31 @@ set -e
 pr_path=".pr_path"
 is_start="false"
 
+if ! [ -z ${#@} ]; then
+  while [ ${#@} -gt 0 ];
+  do
+    case $1 in
+      -h|--help)
+        cat .usage
+        exit
+        ;;
+      -r|--remove)
+        rm -i $pr_path && echo "$pr_path删除成功！"
+        exit
+        ;;
+      -u|--update)
+        npm i @asarua/pr -g
+        exit
+        ;;
+      *)
+        echo "参数错误！使用方式如下"
+        cat .usage
+        exit 1
+        ;;
+    esac
+  done
+fi
+
 echo_pkg() {
   local pkg_path="$path/$1/package.json"
   while read line; do
