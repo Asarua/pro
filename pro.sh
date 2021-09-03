@@ -16,7 +16,7 @@ toggle() {
 usage() {
   cat <<EOF
 pro
-  a command line tool, for start project quickly
+  a command line tool for macOS or Linux, to start project quickly
 
 [Usage]
   $ pro [-hruo]
@@ -24,7 +24,7 @@ pro
   [options]
     -h | --help    echo the usage
     -r | --remove  remove project path cache
-    -u | --update  update pr
+    -u | --update  update pro
     -o | --open    open vscode for choosed project
 EOF
 }
