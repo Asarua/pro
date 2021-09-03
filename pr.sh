@@ -45,7 +45,7 @@ echo_pkg() {
       fi
     fi
 
-    if [[ $line =~ "scripts" ]]; then
+    if [[ $line =~ "scripts" ]] && [[ $line =~ "{" ]]; then
       is_start="true"
     fi
   done < $pkg_path
