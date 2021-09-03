@@ -40,7 +40,7 @@ echo_pkg() {
       fi
 
       if [[ $is_start == "true" ]]; then
-        cmd=${line%%:*}
+        cmd=${line%%: *}
         echo ${cmd:1} | cut -d "\"" -f 1
       fi
     fi
