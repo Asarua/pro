@@ -1,7 +1,7 @@
 {
   "name": "@asarua/pro",
-  "version": "1.0.0",
-  "description": "a command line tool, for start project quickly",
+  "version": "1.0.5",
+  "description": "a command line tool for macOS or Linux, to start project quickly",
   "main": "pr.sh",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

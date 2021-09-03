@@ -7,6 +7,8 @@ is_start="false"
 open="false"
 only_option="false"
 
+[[ `uname` != "Darwin" ]] && echo "暂不支持当前系统！" && exit 0
+
 toggle() {
   only_option="true"
 }
