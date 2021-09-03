@@ -1,0 +1,15 @@
+{
+  "name": "@asarua/pr",
+  "version": "1.0.1",
+  "description": "a command line tool, for start project quickly",
+  "main": "pr.sh",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "pr": "pr.sh"
+  },
+  "keywords": [],
+  "author": "asarua",
+  "license": "ISC"
+}
