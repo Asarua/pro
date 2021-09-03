@@ -13,11 +13,11 @@ toggle() {
 
 usage() {
   cat <<EOF
-pr
+pro
   a command line tool, for start project quickly
 
 [Usage]
-  $ pr [-hruo]
+  $ pro [-hruo]
 
   [options]
     -h | --help    echo the usage

@@ -1,13 +1,13 @@
 {
-  "name": "@asarua/pr",
-  "version": "1.1.6",
+  "name": "@asarua/pro",
+  "version": "1.0.0",
   "description": "a command line tool, for start project quickly",
   "main": "pr.sh",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "pr": "pr.sh"
+    "pro": "pro.sh"
   },
   "keywords": [],
   "author": "asarua",

@@ -1,15 +1,15 @@
-# pr - 一个针对macOS和Linux的快速启动项目的工具
+# pro - 一个针对macOS和Linux的快速启动项目的工具
 
 ## 下载
 
 ```bash
-$ npm i @asarua/pr -g
+$ npm i @asarua/pro -g
 ```
 
 ## 使用方式
 
 ```bash
-$ pr
+$ pro
 # 在此输入你常用项目集合的根目录，比如我的项目都是在/Users/asarua/Desktop/others/projects目录下，此时我只需要将此目录复制到此即可
 # 此提示只出现一次，后续可以直接选择项目
 请输入项目文件夹的绝对路径：/Users/asarua/Desktop/others/projects
@@ -26,11 +26,11 @@ $ pr
 
 ## 选项
 
-- `-r | --remove` 移除已添加的项目路径，下次pr的时候将需要重新进行输入项目路径
+- `-r | --remove` 移除已添加的项目路径，下次pro的时候将需要重新进行输入项目路径
 
-- `-u | --update` 更新pr版本
+- `-u | --update` 更新pro版本
 
-- `-h | --help` 输出pr的使用方式
+- `-h | --help` 输出pro的使用方式
 
 - `-o | --open` 启动项目的同时打开vscode
 
