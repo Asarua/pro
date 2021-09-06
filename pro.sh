@@ -66,8 +66,7 @@ echo_pkg() {
       fi
 
       if [[ $is_start == "true" ]]; then
-        cmd=${line%%: *}
-        echo ${cmd:1} | cut -d "\"" -f 1
+        echo $line | awk 'BEGIN {FS="\""} {print $2}'
       fi
     fi
 
