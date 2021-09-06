@@ -17,6 +17,10 @@ $ pro
  1) callapp		    14) private_npm_backup
  2) coa
 #? 1
+当前选中项目为：xxx
+1) 打开
+2) 启动
+#? 2
 请输入要选择启动的命令：
  1) start
  2) build
@@ -31,8 +35,6 @@ $ pro
 - `-u | --update` 更新pro版本
 
 - `-h | --help` 输出pro的使用方式
-
-- `-o | --open` 启动项目的同时打开vscode
 
 ## 项目描述
 

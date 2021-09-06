@@ -4,7 +4,6 @@ set -e
 
 pr_path="$HOME/.pr_path"
 is_start="false"
-open="false"
 only_option="false"
 
 [[ `uname` != "Darwin" ]] && echo "暂不支持当前系统！" && exit 0
@@ -19,13 +18,12 @@ pro
   a command line tool for macOS or Linux, to start project quickly
 
 [Usage]
-  $ pro [-hruo]
+  $ pro [-hru]
 
   [options]
     -h | --help    echo the usage
     -r | --remove  remove project path cache
     -u | --update  update pro
-    -o | --open    open vscode for choosed project
 EOF
 }
 
@@ -43,12 +41,8 @@ if ! [ -z ${#@} ]; then
         shift
         ;;
       -u|--update)
-        npm i @asarua/pr -g
+        npm i @asarua/pro -g
         toggle
-        shift
-        ;;
-      -o|--open)
-        open="true"
         shift
         ;;
       *)
@@ -109,15 +103,22 @@ do
   if [[ $i != "" ]] && [ -d "$path/$i" ] ; then
     echo "当前选中项目为：$i"
     cd "$path/$i"
-    if ! [ -f package.json ]; then
-      echo "未发现package.json文件，请重新选择目录！"
-    else
-      echo "请输入要选择启动的命令："
-      select c in `echo_pkg $i`; do
-        [[ $open =~ "true" ]] && code .
-        npm run $c
-      done
-    fi
+    select edit in "打开" "启动"; do
+      if [ $edit == "打开" ]; then
+        code . && exit
+      else
+        if ! [ -f package.json ]; then
+          echo "未发现package.json文件，请重新选择目录！"
+        else
+          echo "请输入要选择启动的命令："
+          select c in `echo_pkg $i`; do
+            echo -e "当前项目为 `pwd`\n'npm run $c'命令开始运行！"
+            npm run $c
+            exit
+          done
+        fi
+      fi
+    done
   else
     echo "输入错误，您选择的可能不是一个文件夹，请重新输入："
   fi

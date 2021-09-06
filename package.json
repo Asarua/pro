@@ -1,6 +1,6 @@
 {
   "name": "@asarua/pro",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "a command line tool for macOS or Linux, to start project quickly",
   "main": "pr.sh",
   "scripts": {
