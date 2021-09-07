@@ -1,6 +1,6 @@
 # pro - 一个针对macOS的快速启动项目的工具
 
-## 下载
+## 下载
 
 ```bash
 $ npm i @asarua/pro -g
