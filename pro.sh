@@ -14,7 +14,7 @@ toggle() {
 
 usage() {
   cat <<EOF
-  
+
 pro
   a command line tool for macOS, to start project quickly
 
@@ -58,14 +58,18 @@ if ! [ -z ${#@} ]; then
         shift
         ;;
       -v|--version)
-        cat package.json | grep "version" | awk -F"\"" '{print $4}'
+        cat "`dirname $0`/package.json" | grep "version" | awk -F"\"" '{print $4}'
         toggle
         shift
         ;;
       -a|--append)
         read -p "请输入项目文件夹的绝对路径：" root_path
+        first=${root_path%%/*}
+        if [[ $first == "~" ]]; then
+          root_path="$HOME/${root_path#*/}"
+        fi
         check_path $root_path
-        echo -e "\n$root_path" >> $pr_path
+        echo -e "$root_path" >> $pr_path
         shift
         ;;
       *)
@@ -112,7 +116,7 @@ else
   path=`cat $pr_path`
 fi
 
-if [ `cat $pr_path | grep -c "^.*"` -gt 1 ]; then
+if [ `cat $pr_path | grep -v "^$" | grep -c "^.*"` -gt 1 ]; then
   select project in `cat $pr_path`; do
     if [ -z `grep "$project" $pr_path` ]; then
       echo "输入错误！请重新输入："
