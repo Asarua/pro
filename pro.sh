@@ -14,17 +14,29 @@ toggle() {
 
 usage() {
   cat <<EOF
+  
 pro
-  a command line tool for macOS or Linux, to start project quickly
+  a command line tool for macOS, to start project quickly
 
 [Usage]
-  $ pro [-hru]
+  $ pro [-hruva]
 
   [options]
     -h | --help    echo the usage
     -r | --remove  remove project path cache
     -u | --update  update pro
+    -v | --version echo version
+    -a | --append  append project path
+
 EOF
+}
+
+check_path() {
+  if ! [ -d $1 ]; then
+    echo "输入路径为$1"
+    echo "项目文件夹输入错误！"
+    exit 1
+  fi
 }
 
 if ! [ -z ${#@} ]; then
@@ -43,6 +55,17 @@ if ! [ -z ${#@} ]; then
       -u|--update)
         npm i @asarua/pro -g
         toggle
+        shift
+        ;;
+      -v|--version)
+        cat package.json | grep "version" | awk -F"\"" '{print $4}'
+        toggle
+        shift
+        ;;
+      -a|--append)
+        read -p "请输入项目文件夹的绝对路径：" root_path
+        check_path $root_path
+        echo -e "\n$root_path" >> $pr_path
         shift
         ;;
       *)
@@ -82,16 +105,22 @@ if ! [ -f $pr_path ]; then
   if [[ $first == "~" ]]; then
     path="$HOME/${path#*/}"
   fi
+
+  check_path $path
+  echo $path > $pr_path
 else
   path=`cat $pr_path`
 fi
 
-if [ -d $path ]; then
-  echo $path > $pr_path
-else
-  echo "输入路径为$path"
-  echo "项目文件夹输入错误！"
-  exit 1
+if [ `cat $pr_path | grep -c "^.*"` -gt 1 ]; then
+  select project in `cat $pr_path`; do
+    if [ -z `grep "$project" $pr_path` ]; then
+      echo "输入错误！请重新输入："
+    else
+      path=$project
+      break
+    fi
+  done
 fi
 
 cd $path

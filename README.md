@@ -36,6 +36,10 @@ $ pro
 
 - `-h | --help` 输出pro的使用方式
 
+- `-v | --version` 输出pro的版本
+
+- `-a | --append` 增加项目根目录路径
+
 ## 项目描述
 
-此项目使用sh脚本写成，因此暂时只支持mac和Linux
+暂时只支持mac
